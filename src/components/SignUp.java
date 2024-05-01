@@ -1,4 +1,4 @@
-package Iterator1;
+package components;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +10,9 @@ import java.io.IOException;
 
 public class SignUp {
     public static void signUp() {
-        JFrame signUpFrame = new JFrame("회원가입");
-        signUpFrame.setSize(300, 250);
-        signUpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        signUpFrame.setLocationRelativeTo(null);
+    	SignFrame signUpFrame = new SignFrame("회원가입");
 
-        JPanel signUpPanel = new JPanel(new GridLayout(4, 2));
+    	JPanel signUpPanel = new JPanel(new GridLayout(4, 2));
         signUpPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel idLabel = new JLabel("ID:");
@@ -66,5 +63,6 @@ public class SignUp {
                 signUpFrame.dispose();
             }
         });
+    
     }
 }

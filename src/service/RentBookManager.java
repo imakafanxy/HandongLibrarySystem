@@ -1,4 +1,4 @@
-package Iterator2;
+package service;
 
 public class RentBookManager {
 

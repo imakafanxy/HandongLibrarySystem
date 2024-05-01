@@ -1,12 +1,15 @@
-package Iterator1;
+package components;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import views.*;
 
 public class SignIn {
     public static void signIn() {
@@ -50,8 +53,10 @@ public class SignIn {
                         if (userInfo.length == 3 && userInfo[0].equals(id) && userInfo[1].equals(pw)) {
                             JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
                             signInFrame.dispose();
+                            MainView.show();
                             return;
                         }
+
                     }
                     JOptionPane.showMessageDialog(null, "아이디 및 비밀번호가 틀렸습니다.");
                 } catch (IOException ex) {
