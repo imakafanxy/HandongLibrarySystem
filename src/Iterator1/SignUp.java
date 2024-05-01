@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class SignUp {
+
+    private static final String FILE_PATH = "database/";
+
     public static void signUp() {
         JFrame signUpFrame = new JFrame("회원가입");
         signUpFrame.setSize(300, 250);
@@ -48,7 +51,7 @@ public class SignUp {
                 String pw = String.valueOf(pwField.getPassword());
                 String role = Integer.toString(roleComboBox.getSelectedIndex() + 1); // 유저1, 관리자2, 서버관리자3 
 
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH + "users.txt", true))) {
                     writer.write(id + "," + pw + "," + role + "\n");
                     writer.flush();
                     JOptionPane.showMessageDialog(null, "회원가입이 성공했습니다!");

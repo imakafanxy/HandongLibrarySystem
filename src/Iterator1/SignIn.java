@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class SignIn {
+    private static final String FILE_PATH = "database/";
+
     public static void signIn() {
         JFrame signInFrame = new JFrame("로그인");
         signInFrame.setSize(300, 200);
@@ -43,7 +45,7 @@ public class SignIn {
                 String pw = String.valueOf(pwField.getPassword());
                 
                 //텍스트 파일로 유저 정보 읽어오기 
-                try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH + "users.txt"))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         String[] userInfo = line.split(",");
