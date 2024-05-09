@@ -15,6 +15,12 @@ public class MainView {
             searchManager.setVisible(true);
         });
 
+        JButton addbookButton = new JButton("책 추가");
+        addbookButton.addActionListener(e -> {
+            AddBookView addBookView = new AddBookView();
+            addBookView.setVisible(true);
+        });
+
         JButton settingsButton = new JButton("설정");
         settingsButton.addActionListener(e -> {
 
@@ -28,6 +34,7 @@ public class MainView {
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerPanel.add(searchButton);
+        centerPanel.add(addbookButton);
         panel.add(centerPanel, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();
