@@ -8,15 +8,17 @@ public class Book {
 	private String type;
 	private String author;
 	private String publisher;
-	private Date publishDate;
-	private int ISBN;
+//	private Date publishDate;
+//	private int ISBN;
+	private String publishDate;
+	private String ISBN;
 	private String notes;
 	private String classNo;
 	private String language;
-	private String registerationNo;
+	private String registrationNo;
 	private String callNo;
 	private String location;
-	private String availaity;
+	private String availability;
 	private Date dueDate;
 	private Boolean reservation;
 	private int currentBookShelf;
@@ -24,6 +26,31 @@ public class Book {
 	// TODO: Following two variables must be changed by User Class.
 	private String rentedUser;
 	private String reservedUser;
+
+	public Book(
+			String title,
+			String type,
+			String author,
+			String publisher,
+			String publishDate,
+			String ISBN,
+			String notes,
+			String classNo,
+			String language,
+			String callNo,
+			String location) {
+		this.title = title;
+		this.type = type;
+		this.author = author;
+		this.publisher = publisher;
+		this.publishDate = publishDate;
+		this.ISBN = ISBN;
+		this.notes = notes;
+		this.classNo = classNo;
+		this.language = language;
+		this.callNo = callNo;
+		this.location = location;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -49,17 +76,29 @@ public class Book {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public Date getPublishDate() {
+//	public Date getPublishDate() {
+//		return publishDate;
+//	}
+//	public void setPublishDate(Date publishDate) {
+//		this.publishDate = publishDate;
+//	}
+//	public int getISBN() {
+//		return ISBN;
+//	}
+//	public void setISBN(int iSBN) {
+//		this.ISBN = iSBN;
+//	}
+	public String getPublishDate() {
 		return publishDate;
-	}
-	public void setPublishDate(Date publishDate) {
+	};
+	public void setPublishDate(String publishDate) {
 		this.publishDate = publishDate;
 	}
-	public int getISBN() {
+	public String getISBN() {
 		return ISBN;
 	}
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
+	public void setISBN(String ISBN) {
+		this.ISBN = ISBN;
 	}
 	public String getNotes() {
 		return notes;
@@ -79,11 +118,11 @@ public class Book {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-	public String getRegisterationNo() {
-		return registerationNo;
+	public String getRegistrationNo() {
+		return registrationNo;
 	}
-	public void setRegisterationNo(String registerationNo) {
-		this.registerationNo = registerationNo;
+	public void setRegistrationNo(String registrationNo) {
+		this.registrationNo = registrationNo;
 	}
 	public String getCallNo() {
 		return callNo;
@@ -97,11 +136,11 @@ public class Book {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getAvailaity() {
-		return availaity;
+	public String getAvailability() {
+		return availability;
 	}
-	public void setAvailaity(String availaity) {
-		this.availaity = availaity;
+	public void setAvailability(String availability) {
+		this.availability = availability;
 	}
 	public Date getDueDate() {
 		return dueDate;
