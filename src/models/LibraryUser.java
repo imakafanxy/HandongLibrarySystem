@@ -10,14 +10,16 @@ public class LibraryUser {
     private List<Book> rentedBooks;
     private List<Book> reservedBooks;
     private int userState;
+    private int role;
 
-    public LibraryUser(int maximumRentalBookNum, int currentRentalBookNum, Date overDue, List<Book> rentedBooks, List<Book> reservedBooks, int userState) {
+    public LibraryUser(int maximumRentalBookNum, int currentRentalBookNum, Date overDue, List<Book> rentedBooks, List<Book> reservedBooks, int userState, int role) {
         this.maximumRentalBookNum = maximumRentalBookNum;
         this.currentRentalBookNum = currentRentalBookNum;
         this.overDue = overDue;
         this.rentedBooks = rentedBooks;
         this.reservedBooks = reservedBooks;
         this.userState = userState;
+        this.role = role; 
     }
 
     public int getMaximumRentalBookNum() {
@@ -66,5 +68,12 @@ public class LibraryUser {
 
     public void setUserState(int userState) {
         this.userState = userState;
+    }
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

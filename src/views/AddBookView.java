@@ -1,6 +1,7 @@
 package views;
 
 import models.Book;
+import service.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -187,6 +188,8 @@ public class AddBookView extends JFrame {
 
                 Book newBook = new Book(title, type, author, publisher, publishDate, ISBN, notes, classNo, language, callNo, location);
 
+        
+
                 try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt", true))) {
                     bw.write(title + "," +
                             type + "," +
@@ -208,6 +211,7 @@ public class AddBookView extends JFrame {
                 }
             }
         });
+    
         addPanel.add(bookAddButtons);
     }
 }
