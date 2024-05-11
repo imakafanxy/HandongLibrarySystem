@@ -38,7 +38,6 @@ public class BookSearchManager extends JFrame {
         setTitle("SearchPage");
         setLayout(null);
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(PAGE_WIDTH, PAGE_HEIGHT);
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         frameSize = getSize();
