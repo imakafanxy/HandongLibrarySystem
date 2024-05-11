@@ -3,6 +3,9 @@ package models;
 import java.util.Date;
 
 public class Book {
+
+	// State Pattern
+	private BookState bookState;
 	
 	private String title;
 	private String type;
@@ -50,6 +53,9 @@ public class Book {
 		this.language = language;
 		this.callNo = callNo;
 		this.location = location;
+
+		// singleton pattern
+		bookState = UNBORROWED.getInstance();
 	}
 	
 	public String getTitle() {
@@ -141,6 +147,7 @@ public class Book {
 	}
 	public void setAvailability(String availability) {
 		this.availability = availability;
+
 	}
 	public Date getDueDate() {
 		return dueDate;
@@ -179,6 +186,7 @@ public class Book {
 		this.reservedUser = reservedUser;
 	}
 
-	
+	// State Pattern
+//	Public
 	
 }
