@@ -8,9 +8,14 @@ import java.util.ArrayList;
 
 import components.*;
 import service.*;
+import utility.ButtonCommand.Button;
+import utility.ButtonCommand.ButtonCommand;
+import utility.ButtonCommand.ExitButton;
+
 public class MainView {
     public static void show() {
         MainViewFrame frame = new MainViewFrame("Main View");
+        // X버튼으론 못나감(책을 들고있는지 체크하기 위해서)
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         LibraryUser currentUser = new LibraryUser(5, 0, null, new ArrayList<>(), new ArrayList<>(), 1, 1); // 예시 정보, 사용자 상태와 역할을 설정합니다.
@@ -34,10 +39,12 @@ public class MainView {
             settingsDialog.setVisible(true);
         });
 
+        ButtonCommand exitCommand = new ExitButton();
+        utility.ButtonCommand.Button c_exitButton = new Button(exitCommand);
+
         JButton exitButton = new JButton("도서관 나가기");
         exitButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null, "안녕히가세요!", null, JOptionPane.PLAIN_MESSAGE);
-            System.exit(0);
+            c_exitButton.pressed();
         });
 
         JPanel panel = new JPanel();

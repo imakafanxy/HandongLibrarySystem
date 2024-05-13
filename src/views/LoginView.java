@@ -9,7 +9,16 @@ public class LoginView {
     private JButton signInButton;
     private JButton signUpButton;
 
-    public LoginView() {
+    private static LoginView loginView = null;
+
+    public static LoginView getInstance() {
+        if (loginView == null) {
+            loginView = new LoginView();
+        }
+        return loginView;
+    }
+
+    private LoginView() {
         frame = new LoginFrame("Login/SignUp");
 
         signInButton = new JButton("Sign-In");
