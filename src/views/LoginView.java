@@ -9,6 +9,7 @@ public class LoginView {
     private JButton signInButton;
     private JButton signUpButton;
 
+    // Singleton Pattern
     private static LoginView loginView = null;
 
     public static LoginView getInstance() {
