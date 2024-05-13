@@ -33,6 +33,12 @@ public class MainView {
             settingsDialog.setVisible(true);
         });
 
+        JButton exitButton = new JButton("도서관 나가기");
+        exitButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(null, "안녕히가세요!", null, JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);
+        });
+
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
@@ -40,6 +46,7 @@ public class MainView {
         centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         centerPanel.add(searchButton);
         centerPanel.add(addbookButton);
+        centerPanel.add(exitButton);
         panel.add(centerPanel, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel();
