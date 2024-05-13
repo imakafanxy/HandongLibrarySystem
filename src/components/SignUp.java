@@ -1,17 +1,14 @@
 package components;
 
-import models.LibraryUser;
+import utility.ButtonCommand.ButtonCommand;
+import utility.ButtonCommand.CancelCommand;
+import utility.ButtonCommand.SignUpCommand;
+import utility.ButtonCommand.Button;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class SignUp {
     public static void signUp() {
@@ -51,11 +48,11 @@ public class SignUp {
                 int roleIndex = roleComboBox.getSelectedIndex();
                 int role = roleIndex + 1; // 유저: 1, 관리자: 2, 서버관리자: 3
 
-                LibraryUser newUser = createDefaultLibraryUser(role);
+                ButtonCommand signupCommand = new SignUpCommand(id, pw, roleIndex, role);
+                Button c_signupButton = new Button(signupCommand);
 
-                saveUserToFile(id, pw, role);
+                c_signupButton.pressed();
 
-                JOptionPane.showMessageDialog(null, "회원가입이 성공했습니다!");
                 signUpFrame.dispose();
             }
         });
@@ -63,22 +60,13 @@ public class SignUp {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ButtonCommand cancelCommand = new CancelCommand();
+                Button c_cancelButton = new Button(cancelCommand);
+
+                c_cancelButton.pressed();
+
                 signUpFrame.dispose();
             }
         });
-    }
-
-    private static LibraryUser createDefaultLibraryUser(int role) {
-        return new LibraryUser(5, 0, null, new ArrayList<>(), new ArrayList<>(), 1 ,role);
-    }
-
-    private static void saveUserToFile(String id, String pw, int role) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
-            writer.write(id + "," + pw + "," + role + "\n");
-            writer.flush();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다!");
-        }
     }
 }
