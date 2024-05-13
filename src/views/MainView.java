@@ -11,6 +11,7 @@ import service.*;
 public class MainView {
     public static void show() {
         MainViewFrame frame = new MainViewFrame("Main View");
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         LibraryUser currentUser = new LibraryUser(5, 0, null, new ArrayList<>(), new ArrayList<>(), 1, 1); // 예시 정보, 사용자 상태와 역할을 설정합니다.
 
