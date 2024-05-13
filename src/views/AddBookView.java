@@ -1,7 +1,6 @@
 package views;
 
-import models.Book;
-import service.*;
+import models.Borrowable.Book;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 
 public class AddBookView extends JFrame {
     // 기본 페이지 크기

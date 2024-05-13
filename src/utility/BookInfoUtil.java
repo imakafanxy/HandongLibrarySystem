@@ -1,7 +1,7 @@
 package utility;
 
 import service.BookInfo;
-import models.Book;
+import models.Borrowable.Book;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

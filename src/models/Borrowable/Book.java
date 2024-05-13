@@ -1,8 +1,8 @@
-package models;
+package models.Borrowable;
 
 import java.util.Date;
 
-public class Book {
+public class Book implements BorrowableItem {
 	
 	private String title;
 	private String type;
@@ -179,6 +179,15 @@ public class Book {
 		this.reservedUser = reservedUser;
 	}
 
-	
-	
+
+	// Strategy Pattern
+	@Override
+	public void borrowed() {
+		this.availability = "Borrowed";
+	}
+
+	@Override
+	public void returned() {
+		this.availability = "Returned";
+	}
 }

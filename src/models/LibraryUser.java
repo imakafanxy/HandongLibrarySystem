@@ -1,5 +1,7 @@
 package models;
 
+import models.Borrowable.Book;
+
 import java.util.Date;
 import java.util.List;
 

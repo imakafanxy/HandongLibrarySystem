@@ -1,7 +1,7 @@
 package service;
 
 import components.BookInfoPanel;
-import models.Book;
+import models.Borrowable.Book;
 import utility.BookInfoUtil;
 import models.LibraryUser;
 
