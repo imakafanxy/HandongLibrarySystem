@@ -1,12 +1,11 @@
 package views;
 
-import models.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 import components.*;
+import models.People.LibraryUser;
 import service.*;
 import utility.ButtonCommand.Button;
 import utility.ButtonCommand.ButtonCommand;

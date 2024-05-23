@@ -3,7 +3,7 @@ package service;
 import components.BookInfoPanel;
 import models.Borrowable.Book;
 import utility.BookInfoUtil;
-import models.LibraryUser;
+import models.People.LibraryUser;
 
 import javax.swing.*;
 import java.awt.*;

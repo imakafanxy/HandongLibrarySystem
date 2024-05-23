@@ -1,7 +1,6 @@
 package utility.ButtonCommand;
 
-import components.SignUp;
-import models.LibraryUser;
+import models.People.LibraryUser;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
