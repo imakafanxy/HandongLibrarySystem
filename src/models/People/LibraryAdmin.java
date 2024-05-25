@@ -2,9 +2,9 @@ package models.People;
 
 import models.Borrowable.Book;
 
-public class LibraryAdmin extends Admin{
-    public LibraryAdmin(int ID, String PW, String name, UserLevel userLevel) {
-        super(ID, PW, name, userLevel);
+public class LibraryAdmin extends User{
+    public LibraryAdmin(String ID, String PW, String name, UserLevel userLevel) {
+        super(ID, PW, name, userLevel, 0);
     }
 
     // TODO: Please implement here. If book needs to fix, lib admin can fix it.

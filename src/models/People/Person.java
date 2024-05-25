@@ -1,20 +1,23 @@
 package models.People;
 
 public abstract class Person {
-    private int ID;
+    private String ID;
     private String PW;
     private String name;
     private UserLevel userLevel;
 
-    public Person(int ID, String PW, String name, UserLevel userLevel) {
-
+    public Person(String ID, String PW, String name, UserLevel userLevel) {
+    	this.ID = ID;
+        this.PW = PW;
+        this.name = name;
+        this.userLevel = userLevel;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

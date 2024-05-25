@@ -12,7 +12,7 @@ public class User extends Person {
     private Date overDue;
     private List<Book> rentedBooks;
 
-    public User(int ID, String PW, String name, UserLevel userLevel, int maximumRentalBookNum) {
+    public User(String ID, String PW, String name, UserLevel userLevel, int maximumRentalBookNum) {
         super(ID, PW, name, userLevel);
         currentRentalBookNum = 0;
         overDue = null;

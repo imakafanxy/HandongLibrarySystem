@@ -8,7 +8,7 @@ import java.util.List;
 public class Professor extends User{
     private static final int MAXIMUMRENTALBOOKNUM = 100;
 
-    public Professor(int ID, String PW, String name, UserLevel userLevel) {
+    public Professor(String ID, String PW, String name, UserLevel userLevel) {
         super(ID, PW, name, userLevel, MAXIMUMRENTALBOOKNUM);
     }
 }
