@@ -14,9 +14,9 @@ public class User extends Person {
 
     public User(String ID, String PW, String name, UserLevel userLevel, int maximumRentalBookNum) {
         super(ID, PW, name, userLevel);
-        currentRentalBookNum = 0;
-        overDue = null;
-        rentedBooks = new ArrayList<Book>();
+        this.currentRentalBookNum = 0;
+        this.overDue = null;
+        this.rentedBooks = new ArrayList<>();
         this.maximumRentalBookNum = maximumRentalBookNum;
     }
 
@@ -53,24 +53,22 @@ public class User extends Person {
     }
 
     public boolean addRentedBook(Book book) {
-        if(currentRentalBookNum < maximumRentalBookNum) {
+        if (currentRentalBookNum < maximumRentalBookNum) {
             rentedBooks.add(book);
             currentRentalBookNum++;
-
             return true;
         }
-        // rental fail
         return false;
     }
 
     public boolean returnBook(Book book) {
         try {
             rentedBooks.remove(book);
+            currentRentalBookNum--;
             return true;
         } catch (Exception e) {
             System.out.println("No book found!");
         }
-        // return fail
         return false;
     }
 }

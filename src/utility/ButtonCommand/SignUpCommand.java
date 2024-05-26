@@ -1,21 +1,17 @@
 package utility.ButtonCommand;
 
 import models.People.*;
-import models.Borrowable.Book;
-
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class SignUpCommand implements ButtonCommand {
     private String id;
     private String pw;
     private String name;
-    int roleIndex;
-    int role;
+    private int roleIndex;
+    private int role;
     private UserLevel userLevel;
 
     public SignUpCommand(String id, String pw, String name, int roleIndex, int role) {
@@ -24,7 +20,7 @@ public class SignUpCommand implements ButtonCommand {
         this.name = name;
         this.roleIndex = roleIndex;
         this.role = role;
-        this.userLevel = getUserLevel(roleIndex); // UserLevel 설정
+        this.userLevel = getUserLevel(roleIndex);
     }
 
     @Override
@@ -37,6 +33,7 @@ public class SignUpCommand implements ButtonCommand {
     }
 
     private User createUserByRole(String id, String pw, String name, UserLevel userLevel) {
+        int maxBooks = userLevel == UserLevel.USER_PROFESSOR ? 100 : 10; // 교수는 100권, 나머지는 10권으로 설정
         switch (userLevel) {
             case USER_STUDENT:
                 return new Student(id, pw, name, userLevel);
@@ -53,9 +50,7 @@ public class SignUpCommand implements ButtonCommand {
 
     private void saveUserToFile(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
-            writer.write(user.getID() + "," + user.getPW() + "," + user.getName() + "," + user.getUserLevel().getCombobox_selected() + ","
-                    + user.getMaximumRentalBookNum() + "," + user.getCurrentRentalBookNum() + "," + (user.getOverDue() != null ? user.getOverDue().toString() : "null") + ","
-                    + user.getRentedBooks().size() + "\n");
+            writer.write(user.getID() + "," + user.getPW() + "," + user.getName() + "," + user.getUserLevel().getCombobox_selected() + "," + user.getMaximumRentalBookNum() + "\n");
             writer.flush();
         } catch (IOException ex) {
             ex.printStackTrace();

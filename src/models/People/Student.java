@@ -1,11 +1,5 @@
 package models.People;
 
-import models.Borrowable.Book;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class Student extends User {
     private static final int MAXIMUMRENTALBOOKNUM = 10;
 

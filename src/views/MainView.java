@@ -5,7 +5,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import components.*;
-import models.People.LibraryUser;
+import models.People.User;
+import models.People.UserLevel;
 import service.*;
 import utility.ButtonCommand.Button;
 import utility.ButtonCommand.ButtonCommand;
@@ -17,12 +18,13 @@ public class MainView {
         // X버튼으론 못나감(책을 들고있는지 체크하기 위해서)
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        LibraryUser currentUser = new LibraryUser(5, 0, null, new ArrayList<>(), new ArrayList<>(), 1, 1); // 예시 정보, 사용자 상태와 역할을 설정합니다.
+        // Sample User creation. In real scenarios, this should be the logged-in user.
+        User currentUser = new User("sampleId", "samplePw", "sampleName", UserLevel.USER_STUDENT, 5);
 
         JButton searchButton = new JButton("책 검색");
         searchButton.addActionListener(e -> {
             String fileName = "books.txt";
-            BookSearchManager searchManager = new BookSearchManager(fileName, currentUser); // LibraryUser 객체를 전달합니다.
+            BookSearchManager searchManager = new BookSearchManager(fileName, currentUser);
             searchManager.setVisible(true);
         });
 
@@ -41,7 +43,7 @@ public class MainView {
         // Concrete Command 생성
         ButtonCommand exitCommand = new ExitCommand();
         // Invoker 생성
-        utility.ButtonCommand.Button c_exitButton = new Button(exitCommand);
+        Button c_exitButton = new Button(exitCommand);
 
         JButton exitButton = new JButton("도서관 나가기");
         exitButton.addActionListener(e -> {

@@ -36,7 +36,7 @@ public class BookInfoUtil {
                 String[] parts = line.split(",");
                 String title = parts[0].trim();
 
-                if (title.equalsIgnoreCase(searchTitle)) {
+                if (title.contains(searchTitle)) {
                     for (int i = 0; i < parts.length; i++) {
                         String value = parts[i].trim();
                         if (value.isEmpty()) {  
@@ -44,7 +44,11 @@ public class BookInfoUtil {
                         }
                         bookInfoList.add(new BookInfo(getLabel(i), value));
                     }
-                    break;  
+
+                   
+                    for (int i = parts.length; i < 11; i++) {
+                        bookInfoList.add(new BookInfo(getLabel(i), "정보없음"));
+                    }
                 }
             }
         } catch (IOException ex) {
