@@ -50,7 +50,7 @@ public class SignIn {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         String[] userInfo = line.split(",");
-                        if (userInfo.length == 3 && userInfo[0].equals(id) && userInfo[1].equals(pw)) {
+                        if (/*userInfo.length == 3 &&*/ userInfo[0].equals(id) && userInfo[1].equals(pw)) {
                             JOptionPane.showMessageDialog(null, "로그인에 성공했습니다.");
                             signInFrame.dispose();
                             MainView.show();

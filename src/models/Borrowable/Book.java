@@ -1,8 +1,12 @@
 package models.Borrowable;
 
+import models.BookState.BookState;
+import models.BookState.Borrowed;
+import models.BookState.UnBorrowed;
+
 import java.util.Date;
 
-public class Book implements BorrowableItem {
+public class Book {
 	
 	private String title;
 	private String type;
@@ -18,7 +22,7 @@ public class Book implements BorrowableItem {
 	private String registrationNo;
 	private String callNo;
 	private String location;
-	private String availability;
+	private BookState availability;
 	private Date dueDate;
 	private Boolean reservation;
 	private int currentBookShelf;
@@ -50,6 +54,8 @@ public class Book implements BorrowableItem {
 		this.language = language;
 		this.callNo = callNo;
 		this.location = location;
+
+		this.availability = new UnBorrowed();
 	}
 	
 	public String getTitle() {
@@ -136,10 +142,10 @@ public class Book implements BorrowableItem {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getAvailability() {
+	public BookState getAvailability() {
 		return availability;
 	}
-	public void setAvailability(String availability) {
+	public void setAvailability(BookState availability) {
 		this.availability = availability;
 	}
 	public Date getDueDate() {
@@ -179,17 +185,15 @@ public class Book implements BorrowableItem {
 		this.reservedUser = reservedUser;
 	}
 
-
-	// Strategy Pattern
-	@Override
-	public void borrowed() {
-		this.availability = "Borrowed";
+	// State Pattern: Context
+	public void borrow() {
+		availability.borrow(this);
 	}
 
-	@Override
-	public void returned() {
-		this.availability = "Returned";
+	public void returnBook() {
+		availability.returnBook(this);
 	}
+
 
 	@Override
 	public String toString() {
