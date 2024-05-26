@@ -1,5 +1,6 @@
 package utility.ButtonCommand;
 
+// Invoker
 public class Button {
     private ButtonCommand buttonCommand;
 

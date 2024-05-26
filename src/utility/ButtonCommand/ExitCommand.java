@@ -1,10 +1,10 @@
 package utility.ButtonCommand;
 
 // Concrete Command
-public class CancelCommand implements ButtonCommand {
+public class ExitCommand implements ButtonCommand {
 
     @Override
     public void buttonPress() {
-        ButtonUtils.cancel();
+        ButtonUtils.exitProgram();
     }
 }
