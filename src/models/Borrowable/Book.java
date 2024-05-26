@@ -190,4 +190,12 @@ public class Book implements BorrowableItem {
 	public void returned() {
 		this.availability = "Returned";
 	}
+
+	@Override
+	public String toString() {
+		return "Book{" +
+				"title='" + title + '\'' +
+				", callNo='" + callNo + '\'' +
+				'}';
+	}
 }
