@@ -9,7 +9,7 @@ import models.People.LibraryUser;
 import service.*;
 import utility.ButtonCommand.Button;
 import utility.ButtonCommand.ButtonCommand;
-import utility.ButtonCommand.ExitButton;
+import utility.ButtonCommand.ExitCommand;
 
 public class MainView {
     public static void show() {
@@ -38,7 +38,9 @@ public class MainView {
             settingsDialog.setVisible(true);
         });
 
-        ButtonCommand exitCommand = new ExitButton();
+        // Concrete Command 생성
+        ButtonCommand exitCommand = new ExitCommand();
+        // Invoker 생성
         utility.ButtonCommand.Button c_exitButton = new Button(exitCommand);
 
         JButton exitButton = new JButton("도서관 나가기");
