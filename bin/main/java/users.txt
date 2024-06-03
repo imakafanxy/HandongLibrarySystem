@@ -16,4 +16,3 @@ ddd,ddd,ddd,0
 dd,dd,dd,0,10
 aaaa,aaaa,aaaa,0,10
 a,a,a,0,10
-ㅁㄴㅇㄹ,ㅁㄴㅇㄹ,ㅁㄴㅇㄹ,0,10

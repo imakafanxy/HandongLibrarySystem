@@ -12,7 +12,7 @@ public class SearchBookCommand implements ButtonCommand {
 
     @Override
     public void buttonPress() {
-        String fileName = "books.txt";
+        String fileName = "src/main/java/books.txt";
         BookSearchManager searchManager = new BookSearchManager(fileName, user);
         searchManager.setVisible(true);
     }

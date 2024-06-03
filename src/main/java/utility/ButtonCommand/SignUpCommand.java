@@ -49,7 +49,7 @@ public class SignUpCommand implements ButtonCommand {
     }
 
     private void saveUserToFile(User user) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/users.txt", true))) {
             writer.write(user.getID() + "," + user.getPW() + "," + user.getName() + "," + user.getUserLevel().getCombobox_selected() + "," + user.getMaximumRentalBookNum() + "\n");
             writer.flush();
         } catch (IOException ex) {

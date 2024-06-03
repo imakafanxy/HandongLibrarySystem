@@ -188,7 +188,7 @@ public class AddBookView extends JFrame {
 
         
 
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt", true))) {
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/java/books.txt", true))) {
                     bw.write(title + "," +
                             type + "," +
                             author + "," +

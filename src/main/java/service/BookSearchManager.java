@@ -136,7 +136,7 @@ public class BookSearchManager extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String searchTitle = searchField.getText().trim();
-                List<BookInfo> bookInfoList = readBookInfoFromFile("books.txt", searchTitle);
+                List<BookInfo> bookInfoList = readBookInfoFromFile("src/main/java/books.txt", searchTitle);
 
                 if (bookInfoList.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "책 정보가 존재하지 않습니다!");

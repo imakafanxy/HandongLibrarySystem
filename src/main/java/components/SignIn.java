@@ -46,7 +46,7 @@ public class SignIn {
                 String pw = String.valueOf(pwField.getPassword());
                 
                 //텍스트 파일로 유저 정보 읽어오기 
-                try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
+                try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/users.txt"))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
                         String[] userInfo = line.split(",");

@@ -1,16 +1,13 @@
 package main.java.views;
 
 import javax.swing.*;
-
 import main.java.components.MainViewFrame;
-
-import java.awt.*;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import main.java.models.People.User;
 import main.java.models.People.UserLevel;
 import main.java.utility.ButtonCommand.*;
-import main.java.utility.ButtonCommand.Button;
+import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MainView {
     private static ResourceBundle bundle;
@@ -29,7 +26,7 @@ public class MainView {
         ButtonCommand searchCommand = new SearchBookCommand(currentUser);
         ButtonCommand addBookCommand = new AddBookCommand(buttonReceiver);
         ButtonCommand settingsCommand = new SettingsCommand(frame);
-        ButtonCommand exitCommand = new ExitCommand();
+        ButtonCommand exitCommand = new ExitCommand(buttonReceiver);
 
         Button searchButton = new Button(searchCommand);
         Button addBookButton = new Button(addBookCommand);
@@ -93,6 +90,6 @@ public class MainView {
         }
 
         bundle = ResourceBundle.getBundle("localization.MainView", selectedLocale);
-        SwingUtilities.invokeLater(() -> show()); // UI 갱신을 위해 MainView 다시 실행
+        SwingUtilities.invokeLater(MainView::show); // UI 갱신을 위해 MainView 다시 실행
     }
 }
