@@ -1,9 +1,11 @@
 package views;
 
 import models.Borrowable.Book;
+import models.People.Products.Person;
 import service.BookInfo;
 import utility.BookInfoUtil;
 import models.People.Products.User;
+import utility.PersonNotifier.PersonObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class BookSearchView extends JFrame {
+public class BookSearchView extends JFrame implements PersonObserver {
     static final int PAGE_WIDTH = 800;
     static final int PAGE_HEIGHT = 600;
     static final int BTN_SIZE_W = 100;
@@ -27,7 +29,9 @@ public class BookSearchView extends JFrame {
     JTextField searchField;
     List<BookInfo> currentBookInfoList;
 
-    public BookSearchView(String fileName, User user) {
+    Person person;
+
+    public BookSearchView(String fileName) {
         setTitle("SearchPage");
         setLayout(new BorderLayout());
         setVisible(true);
@@ -36,7 +40,7 @@ public class BookSearchView extends JFrame {
         frameSize = getSize();
         setLocation((windowSize.width - frameSize.width) / 2, (windowSize.height - frameSize.height) / 2);
 
-        addSearchPanel(user);
+        addSearchPanel((User)person);
     }
 
     void displayBookInfo(List<BookInfo> bookInfoList, User user) {
@@ -66,6 +70,7 @@ public class BookSearchView extends JFrame {
         rentBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("User: " + person.getName());
                 if (user.getCurrentRentalBookNum() < user.getMaximumRentalBookNum()) {
                     BookInfo bookInfo = currentBookInfoList.get(0); // 첫 번째 책을 대여한다고 가정
                     Book rentedBook = new Book(
@@ -152,5 +157,10 @@ public class BookSearchView extends JFrame {
     private List<BookInfo> readBookInfoFromFile(String fileName, String searchTitle) {
         List<BookInfo> bookInfoList = BookInfoUtil.createBookInfoListFromFile(fileName, searchTitle);
         return bookInfoList;
+    }
+
+    @Override
+    public void updateCurrentPerson(Person currentPerson) {
+        person = currentPerson;
     }
 }

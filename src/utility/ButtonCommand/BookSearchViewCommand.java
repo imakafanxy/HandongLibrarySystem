@@ -13,7 +13,7 @@ public class BookSearchViewCommand implements ButtonCommand {
     @Override
     public void buttonPress() {
         String filename = "src/main/java/books.txt";
-        BookSearchView bookSearchView = new BookSearchView(filename, user);
+        BookSearchView bookSearchView = new BookSearchView(filename);
         bookSearchView.setVisible(true);
     }
 }
