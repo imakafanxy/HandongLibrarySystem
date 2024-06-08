@@ -1,7 +1,9 @@
 package utility.ButtonCommand;
 
+import javax.swing.*;
+
 // Invoker
-public class Button {
+public class Button extends JButton {
     private ButtonCommand buttonCommand;
 
     public Button(ButtonCommand buttonCommand) {

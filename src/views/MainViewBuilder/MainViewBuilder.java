@@ -1,15 +1,13 @@
 package views.MainViewBuilder;
 
-import utility.ButtonCommand.ButtonCommand;
-
 // abstract builder
 public interface MainViewBuilder {
 
-    public void buildPanel();
+    void buildPanel();
 
-    public void buildButton();
+    void buildButton();
 
-    public void buildLabel();
+    void buildLabel();
 
-    public MainView getMainView();
+    MainView getMainView();
 }

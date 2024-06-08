@@ -1,6 +1,9 @@
 package views;
 
 import models.Borrowable.Book;
+import utility.ButtonCommand.Button;
+import utility.ButtonCommand.ButtonCommand;
+import utility.ButtonCommand.CancelCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +14,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class AddBookView extends JFrame {
+    // Singleton Pattern
+    private static AddBookView addBookView = null;
+
+    public static AddBookView getInstance() {
+        if (addBookView == null) {
+            addBookView = new AddBookView();
+        }
+        return addBookView;
+    }
+
     // 기본 페이지 크기
     static final int PAGE_WIDTH = 340;
     static final int PAGE_HEIGHT = 520;
@@ -56,11 +69,12 @@ public class AddBookView extends JFrame {
 
 
     // 페이지 요소(Button)
-    JButton bookAddButtons;
+    JButton bookAddButton;
+    JButton cancelButton;
 
-
-    public AddBookView() {
+    private AddBookView() {
         setTitle("AddBookPage");
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(null);
         setVisible(true);
         setSize(PAGE_WIDTH, PAGE_HEIGHT);
@@ -71,7 +85,7 @@ public class AddBookView extends JFrame {
         addAddBookPanel();
     }
 
-    void addAddBookPanel() {
+    private void addAddBookPanel() {
         addPanel = new JPanel();
 
         addPanel.setLayout(null);
@@ -85,7 +99,7 @@ public class AddBookView extends JFrame {
         add(addPanel);
     }
 
-    void addLabels() {
+    private void addLabels() {
         titleLabel = new JLabel("Book Title");
         typeLabel = new JLabel("Type");
         authorLabel = new JLabel("Author");
@@ -124,7 +138,7 @@ public class AddBookView extends JFrame {
 
     }
 
-    public void addFields() {
+    private void addFields() {
         titleField = new JTextField();
         typeField = new JTextField();
         authorField = new JTextField();
@@ -162,13 +176,28 @@ public class AddBookView extends JFrame {
         addPanel.add(locationField);
     }
 
-    public void addButtons() {
-        bookAddButtons = new JButton("Add Book");
+    private void addButtons() {
+        cancelButton = new JButton("Cancel");
+        cancelButton.setBounds(PAGE_WIDTH - 2*BTN_SIZE_W - 20, PAGE_HEIGHT - BTN_SIZE_H - 30, BTN_SIZE_W, BTN_SIZE_H);
 
-        bookAddButtons.setBounds(PAGE_WIDTH - BTN_SIZE_W - 10, PAGE_HEIGHT - BTN_SIZE_H - 30, BTN_SIZE_W, BTN_SIZE_H);
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ButtonCommand cancelButton = new CancelCommand();
+                Button c_cancelButton = new Button(cancelButton);
+
+                c_cancelButton.pressed();
+                addBookView.dispose();
+                addBookView = null;
+            }
+        });
+
+        bookAddButton = new JButton("Add Book");
+
+        bookAddButton.setBounds(PAGE_WIDTH - BTN_SIZE_W - 10, PAGE_HEIGHT - BTN_SIZE_H - 30, BTN_SIZE_W, BTN_SIZE_H);
 
 
-        bookAddButtons.addActionListener(new ActionListener() {
+        bookAddButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String title = titleField.getText();
@@ -203,13 +232,15 @@ public class AddBookView extends JFrame {
                     bw.flush();
                     JOptionPane.showMessageDialog(null, "Book Added Successfully");
                     dispose();
+                    addBookView = null;
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Error while saving Book");
                 }
             }
         });
-    
-        addPanel.add(bookAddButtons);
+
+        addPanel.add(cancelButton);
+        addPanel.add(bookAddButton);
     }
 }

@@ -6,6 +6,7 @@ import models.People.UserLevel;
 import utility.ButtonCommand.ButtonCommand;
 import utility.ButtonCommand.CancelCommand;
 import utility.ButtonCommand.Button;
+import utility.ButtonCommand.SignInCommand;
 import views.MainViewBuilder.*;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ import java.io.IOException;
 
 public class SignInView extends JFrame {
     // singleton Pattern
-    public static SignInView signInView = null;
+    private static SignInView signInView = null;
 
     public static SignInView getInstance() {
         if (signInView == null) {
@@ -119,24 +120,10 @@ public class SignInView extends JFrame {
                             person = newPersonFactory.createPerson(personID, personPassword, personName, personUserLevel);
 
 
-                            // MainView 객체 생성
-                            MainViewBuilder mainViewBuilder;
-
-                            if(userInfo[3].equals(UserLevel.USER_STUDENT.getLevel()) || userInfo[3].equals(UserLevel.USER_PROFESSOR.getLevel())) {
-                                mainViewBuilder = new UserMainViewBuilder();
-                            }
-                            else {
-                                mainViewBuilder = new AdminMainViewBuilder();
-                            }
-
-                            MainViewDirector director = new MainViewDirector(mainViewBuilder);
-                            director.construct();
-
-                            MainView mainView = mainViewBuilder.getMainView();
-
-                            mainView.updateCurrentPerson(person);
-
-                            mainView.setVisible(true);
+                            // SignInCommand
+                            ButtonCommand signInCommand = new SignInCommand(person);
+                            Button c_signInButton = new Button(signInCommand);
+                            c_signInButton.pressed();
                             return;
                         }
                     }

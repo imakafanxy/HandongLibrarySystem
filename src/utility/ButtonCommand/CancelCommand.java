@@ -6,6 +6,5 @@ public class CancelCommand implements ButtonCommand {
     @Override
     public void buttonPress() {
         ButtonUtils.cancel();
-
     }
 }

@@ -7,6 +7,8 @@ public class SettingDialog extends JDialog {
     public SettingDialog(JFrame parent) {
         super(parent, "Settings", true); // 부모 프레임을 참조하고 모달 다이얼로그로 설정
 
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
         // 다이얼로그 크기 및 위치 설정
         setSize(300, 200);
         setLocationRelativeTo(parent);
@@ -22,5 +24,6 @@ public class SettingDialog extends JDialog {
         panel.add(adminManagementButton);
 
         add(panel, BorderLayout.CENTER);
+        setVisible(true);
     }
 }

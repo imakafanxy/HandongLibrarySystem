@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class SignUpView extends JFrame {
     // singleton Pattern
-    public static SignUpView signUpView = null;
+    private static SignUpView signUpView = null;
 
     public static SignUpView getInstance() {
         if (signUpView == null) {
@@ -120,6 +120,7 @@ public class SignUpView extends JFrame {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Person 객체 생성하는 부분
                 String id = idTextField.getText();
                 String pw = String.valueOf(pwField.getPassword());
                 String name = nameTextField.getText();
@@ -129,11 +130,13 @@ public class SignUpView extends JFrame {
 
                 person = newPersonFactory.createPerson(id, pw, name, UserLevel.setUserLevelByComboBox(role));
 
+                // ButtonCommand 작동하는 부분
                 ButtonCommand signUpCommand = new SignUpCommand(person);
                 Button c_signUpButton = new Button(signUpCommand);
 
                 c_signUpButton.pressed();
                 dispose();
+                signUpView = null;
             }
         });
     }

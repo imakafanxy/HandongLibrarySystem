@@ -4,6 +4,10 @@ import models.BookState.BookState;
 import models.BookState.Borrowed;
 import models.BookState.UnBorrowed;
 
+import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 
 public class Book {
@@ -201,5 +205,26 @@ public class Book {
 				"title='" + title + '\'' +
 				", callNo='" + callNo + '\'' +
 				'}';
+	}
+
+	public void addBook() {
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt", true))) {
+			bw.write(title + "," +
+					type + "," +
+					author + "," +
+					publisher + "," +
+					publishDate + "," +
+					ISBN + "," +
+					notes + "," +
+					classNo + "," +
+					language + "," +
+					callNo + "," +
+					location + "\n");
+			bw.flush();
+			JOptionPane.showMessageDialog(null, "Book Added Successfully");
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error while saving Book");
+		}
 	}
 }

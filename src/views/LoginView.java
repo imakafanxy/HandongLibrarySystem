@@ -3,8 +3,21 @@ package views;
 import javax.swing.*;
 import java.awt.*;
 import components.*;
+import utility.ButtonCommand.Button;
+import utility.ButtonCommand.ButtonCommand;
+import utility.ButtonCommand.SignInViewCommand;
+import utility.ButtonCommand.SignUpViewCommand;
 
 public class LoginView extends JFrame {
+    // Singleton Pattern
+    private static LoginView loginView = null;
+
+    public static LoginView getInstance() {
+        if (loginView == null) {
+            loginView = new LoginView();
+        }
+        return loginView;
+    }
 
     // 기본 정보
     Dimension frameSize;
@@ -16,15 +29,6 @@ public class LoginView extends JFrame {
     private JButton signInButton;
     private JButton signUpButton;
 
-    // Singleton Pattern
-    private static LoginView loginView = null;
-
-    public static LoginView getInstance() {
-        if (loginView == null) {
-            loginView = new LoginView();
-        }
-        return loginView;
-    }
 
     private LoginView() {
         setVisible(true);
@@ -56,8 +60,17 @@ public class LoginView extends JFrame {
         signInButton.setPreferredSize(new Dimension(120, 30));
         signUpButton.setPreferredSize(new Dimension(120, 30));
 
-        signInButton.addActionListener(e -> SignInView.getInstance());
-        signUpButton.addActionListener(e -> SignUpView.getInstance());
+        // SignInView에 대한 Command Pattern - Client
+        ButtonCommand signInViewCommand = new SignInViewCommand();
+        Button c_signInViewButton = new Button(signInViewCommand);
+
+        signInButton.addActionListener(e -> c_signInViewButton.pressed());
+
+        // SignUpView에 대한 Command Pattern - Client
+        ButtonCommand signUpViewCommand = new SignUpViewCommand();
+        Button c_signUpViewButton = new Button(signUpViewCommand);
+
+        signUpButton.addActionListener(e -> c_signUpViewButton.pressed());
 
         centerPanel.add(signInButton);
         centerPanel.add(signUpButton);

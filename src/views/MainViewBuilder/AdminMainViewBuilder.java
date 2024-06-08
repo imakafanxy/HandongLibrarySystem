@@ -28,36 +28,30 @@ public class AdminMainViewBuilder implements MainViewBuilder {
 
     @Override
     public void buildButton() {
+        // AddBook Button
         JButton addBookbutton = new JButton("책 등록");
-        addBookbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddBookView addBookView = new AddBookView();
-                addBookView.setVisible(true);
-            }
-        });
+        ButtonCommand addBookViewCommand = new AddBookViewCommand();
+        Button c_addBookViewButton = new Button(addBookViewCommand);
 
+        addBookbutton.addActionListener(e -> c_addBookViewButton.pressed());
+
+        // Setting Button
         JButton settingButton = new JButton("설정");
-        settingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SettingDialog settingDialog = new SettingDialog(mainView);
-                settingDialog.setVisible(true);
-            }
-        });
+        ButtonCommand settingDialogCommand = new SettingDialogCommand(mainView);
+        Button c_settingDialogButton = new Button(settingDialogCommand);
 
+        settingButton.addActionListener(e -> c_settingDialogButton.pressed());
+
+        // Exit Button
         ButtonCommand exitCommand = new ExitCommand();
         Button c_exitButton = new Button(exitCommand);
 
         JButton exitButton = new JButton("도서관 나가기");
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                c_exitButton.pressed();
-            }
-        });
+        exitButton.addActionListener(e -> c_exitButton.pressed());
 
+        // setButtons
         mainView.setButton(addBookbutton);
+        mainView.setButton(settingButton);
         mainView.setButton(exitButton);
     }
 

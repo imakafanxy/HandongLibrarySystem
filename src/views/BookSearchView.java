@@ -1,6 +1,7 @@
-package service;
+package views;
 
 import models.Borrowable.Book;
+import service.BookInfo;
 import utility.BookInfoUtil;
 import models.People.Products.User;
 
@@ -10,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class BookSearchManager extends JFrame {
+public class BookSearchView extends JFrame {
     static final int PAGE_WIDTH = 800;
     static final int PAGE_HEIGHT = 600;
     static final int BTN_SIZE_W = 100;
@@ -26,7 +27,7 @@ public class BookSearchManager extends JFrame {
     JTextField searchField;
     List<BookInfo> currentBookInfoList;
 
-    public BookSearchManager(String fileName, User user) {
+    public BookSearchView(String fileName, User user) {
         setTitle("SearchPage");
         setLayout(new BorderLayout());
         setVisible(true);

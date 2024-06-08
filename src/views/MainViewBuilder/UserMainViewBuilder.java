@@ -1,7 +1,7 @@
 package views.MainViewBuilder;
 
 import models.People.Products.User;
-import service.BookSearchManager;
+import views.BookSearchView;
 import utility.ButtonCommand.*;
 import utility.ButtonCommand.Button;
 
@@ -27,27 +27,21 @@ public class UserMainViewBuilder implements MainViewBuilder {
 
     @Override
     public void buildButton() {
+        // Search Button
         JButton searchButton = new JButton("책 검색");
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String fileName = "books.txt";
-                BookSearchManager searchManager = new BookSearchManager(fileName, currentUser);
-                searchManager.setVisible(true);
-            }
-        });
+        ButtonCommand bookSearchViewCommand = new BookSearchViewCommand(currentUser);
+        Button c_bookSearchViewButton = new Button(bookSearchViewCommand);
 
+        searchButton.addActionListener(e -> c_bookSearchViewButton.pressed());
+
+        // Exit Button
+        JButton exitButton = new JButton("도서관 나가기");
         ButtonCommand exitCommand = new ExitCommand();
         Button c_exitButton = new Button(exitCommand);
 
-        JButton exitButton = new JButton("도서관 나가기");
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                c_exitButton.pressed();
-            }
-        });
+        exitButton.addActionListener(e -> c_exitButton.pressed());
 
+        // setButtons
         mainView.setButton(searchButton);
         mainView.setButton(exitButton);
     }
