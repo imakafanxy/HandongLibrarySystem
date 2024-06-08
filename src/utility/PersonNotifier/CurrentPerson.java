@@ -2,17 +2,22 @@ package utility.PersonNotifier;
 
 import models.People.Products.Person;
 
-import java.util.ArrayList;
-import java.util.List;
 
+// Concrete Subject
 public class CurrentPerson extends PersonSubject {
-    private List<PersonObserver> observers = new ArrayList<>();
+    // Singleton Pattern
+    private static CurrentPerson currentPerson = null;
 
-    private Person person;
-
-    public CurrentPerson(Person person) {
-        this.person = person;
+    public static CurrentPerson getInstance() {
+        if(currentPerson == null) {
+            return new CurrentPerson();
+        }
+        else {
+            return currentPerson;
+        }
     }
+
+    private CurrentPerson() {}
 
     public void changeCurrentPerson(Person person) {
         this.person = person;

@@ -2,6 +2,7 @@ package utility.ButtonCommand;
 
 import models.People.Products.Person;
 import models.People.UserLevel;
+import utility.PersonNotifier.CurrentPerson;
 import views.MainViewBuilder.*;
 
 public class SignInCommand implements ButtonCommand {
@@ -14,6 +15,10 @@ public class SignInCommand implements ButtonCommand {
 
     @Override
     public void buttonPress() {
+
+        CurrentPerson currentPerson = CurrentPerson.getInstance();
+
+
         if(person.getUserLevel() == UserLevel.USER_STUDENT || person.getUserLevel() == UserLevel.USER_PROFESSOR) {
             mainViewBuilder = new UserMainViewBuilder();
         }
@@ -25,7 +30,8 @@ public class SignInCommand implements ButtonCommand {
         director.construct();
 
         MainView mainView = mainViewBuilder.getMainView();
-        mainView.updateCurrentPerson(person);
+        currentPerson.subscribe(mainView);
+        currentPerson.changeCurrentPerson(person);
 
         mainView.setVisible(true);
     }
