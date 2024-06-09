@@ -1,6 +1,8 @@
 package views;
 
 import models.Borrowable.Book;
+import models.Borrowable.Strategy.BookAddStrategy;
+import utility.ButtonCommand.AddBookCommand;
 import utility.ButtonCommand.Button;
 import utility.ButtonCommand.ButtonCommand;
 import utility.ButtonCommand.CancelCommand;
@@ -9,9 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class AddBookView extends JFrame {
     // Singleton Pattern
@@ -200,6 +199,7 @@ public class AddBookView extends JFrame {
         bookAddButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Book 객체 생성
                 String title = titleField.getText();
                 String type = typeField.getText();
                 String author = authorField.getText();
@@ -212,31 +212,16 @@ public class AddBookView extends JFrame {
                 String callNo = callNoField.getText();
                 String location = locationField.getText();
 
-
                 Book newBook = new Book(title, type, author, publisher, publishDate, ISBN, notes, classNo, language, callNo, location);
+                newBook.setAddStrategy(new BookAddStrategy());
 
-        
+                // AddBook Command
+                ButtonCommand addBookCommand = new AddBookCommand(newBook);
+                Button c_addBookButton = new Button(addBookCommand);
 
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("books.txt", true))) {
-                    bw.write(title + "," +
-                            type + "," +
-                            author + "," +
-                            publisher + "," +
-                            publishDate + "," +
-                            ISBN + "," +
-                            notes + "," +
-                            classNo + "," +
-                            language + "," +
-                            callNo + "," +
-                            location + "\n");
-                    bw.flush();
-                    JOptionPane.showMessageDialog(null, "Book Added Successfully");
-                    dispose();
-                    addBookView = null;
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error while saving Book");
-                }
+                c_addBookButton.pressed();
+                dispose();
+                addBookView = null;
             }
         });
 

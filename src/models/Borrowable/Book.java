@@ -1,7 +1,6 @@
 package models.Borrowable;
 
 import models.BookState.BookState;
-import models.BookState.Borrowed;
 import models.BookState.UnBorrowed;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-public class Book {
+public class Book extends BorrowableItem {
 	
 	private String title;
 	private String type;
@@ -203,7 +202,7 @@ public class Book {
 	public String toString() {
 		return "Book{" +
 				"title='" + title + '\'' +
-				", callNo='" + callNo + '\'' +
+				"callNo='" + callNo + '\'' +
 				'}';
 	}
 
