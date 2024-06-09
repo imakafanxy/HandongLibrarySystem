@@ -10,6 +10,6 @@ public class AddBookCommand implements ButtonCommand {
     }
     @Override
     public void buttonPress() {
-        book.addBook();
+        book.addItem();
     }
 }
