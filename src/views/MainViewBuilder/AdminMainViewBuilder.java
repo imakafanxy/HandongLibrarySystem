@@ -29,11 +29,18 @@ public class AdminMainViewBuilder implements MainViewBuilder {
     @Override
     public void buildButton() {
         // AddBook Button
-        JButton addBookbutton = new JButton("책 등록");
+        JButton addBookButton = new JButton("책 등록");
         ButtonCommand addBookViewCommand = new AddBookViewCommand();
         Button c_addBookViewButton = new Button(addBookViewCommand);
 
-        addBookbutton.addActionListener(e -> c_addBookViewButton.pressed());
+        addBookButton.addActionListener(e -> c_addBookViewButton.pressed());
+
+        // AddCd Button
+        JButton addCdButton = new JButton("CD 등록");
+        ButtonCommand addCdViewCommand = new AddCdViewCommand();
+        Button c_addCdViewButton = new Button(addCdViewCommand);
+
+        addCdButton.addActionListener(e -> c_addCdViewButton.pressed());
 
         // Setting Button
         JButton settingButton = new JButton("설정");
@@ -50,7 +57,8 @@ public class AdminMainViewBuilder implements MainViewBuilder {
         exitButton.addActionListener(e -> c_exitButton.pressed());
 
         // setButtons
-        mainView.setButton(addBookbutton);
+        mainView.setButton(addBookButton);
+        mainView.setButton(addCdButton);
         mainView.setButton(settingButton);
         mainView.setButton(exitButton);
     }
