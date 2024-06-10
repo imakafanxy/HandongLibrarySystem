@@ -175,14 +175,5 @@ public class AddCdView extends JFrame {
         String location = locationField.getText();
 
         Cd cd = new Cd(title, artist, releaseDate, genre,publisher, notes, location);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("cds.txt", true))) {
-            writer.write(title + "," + artist + "," + releaseDate + "," + genre + "," + publisher + "," + notes + "," + location + "\n");
-            writer.flush();
-            JOptionPane.showMessageDialog(this, "CD가 추가되었습니다.");
-            dispose();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "CD 추가 중 오류가 발생했습니다.");
-        }
     }
 }
