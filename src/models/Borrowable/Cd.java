@@ -1,8 +1,5 @@
 package models.Borrowable;
 
-import models.Borrowable.Strategy.Borrow.BorrowStrategy;
-import models.Borrowable.Strategy.Return.ReturnStrategy;
-
 import java.util.Date;
 
 public class Cd extends BorrowableItem {
@@ -130,16 +127,6 @@ public class Cd extends BorrowableItem {
     public void setReservedUser(String reservedUser) {
         this.reservedUser = reservedUser;
     }
-
-//    @Override
-//    public void borrowed() {
-//        this.availability = "Borrowed";
-//    }
-//
-//    @Override
-//    public void returned() {
-//        this.availability = "Returned";
-//    }
 
     @Override
     public String toString() {
