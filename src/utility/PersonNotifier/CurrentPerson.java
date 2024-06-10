@@ -10,11 +10,10 @@ public class CurrentPerson extends PersonSubject {
 
     public static CurrentPerson getInstance() {
         if(currentPerson == null) {
-            return new CurrentPerson();
+            currentPerson =  new CurrentPerson();
         }
-        else {
-            return currentPerson;
-        }
+        
+        return currentPerson;
     }
 
     private CurrentPerson() {}

@@ -7,7 +7,6 @@ import utility.ButtonCommand.ButtonCommand;
 import utility.ButtonCommand.CancelCommand;
 import utility.ButtonCommand.Button;
 import utility.ButtonCommand.SignInCommand;
-import utility.PersonNotifier.CurrentPerson;
 import views.MainViewBuilder.*;
 
 import javax.swing.*;

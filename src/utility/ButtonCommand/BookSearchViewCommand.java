@@ -1,19 +1,19 @@
 package utility.ButtonCommand;
 
 import models.People.Products.User;
+import utility.PersonNotifier.CurrentPerson;
 import views.BookSearchView;
 
 public class BookSearchViewCommand implements ButtonCommand {
-    private User user;
 
-    public BookSearchViewCommand(User user) {
-        this.user = user;
-    }
 
     @Override
     public void buttonPress() {
-        String filename = "src/main/java/books.txt";
-        BookSearchView bookSearchView = new BookSearchView(filename);
+        CurrentPerson currentPerson = CurrentPerson.getInstance();
+//        String filename = "src/main/java/books.txt";
+        BookSearchView bookSearchView = BookSearchView.getInstance();
         bookSearchView.setVisible(true);
+
+        currentPerson.subscribe(bookSearchView);
     }
 }

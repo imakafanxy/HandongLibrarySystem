@@ -29,7 +29,7 @@ public class UserMainViewBuilder implements MainViewBuilder {
     public void buildButton() {
         // Search Button
         JButton searchButton = new JButton("책 검색");
-        ButtonCommand bookSearchViewCommand = new BookSearchViewCommand(currentUser);
+        ButtonCommand bookSearchViewCommand = new BookSearchViewCommand();
         Button c_bookSearchViewButton = new Button(bookSearchViewCommand);
 
         searchButton.addActionListener(e -> c_bookSearchViewButton.pressed());

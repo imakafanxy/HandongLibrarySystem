@@ -14,6 +14,15 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class BookSearchView extends JFrame implements PersonObserver {
+    // Singleton Pattern
+    private static BookSearchView bookSearchView;
+
+    public static BookSearchView getInstance() {
+        if (bookSearchView == null) {
+            bookSearchView = new BookSearchView();
+        }
+        return bookSearchView;
+    }
     static final int PAGE_WIDTH = 800;
     static final int PAGE_HEIGHT = 600;
     static final int BTN_SIZE_W = 100;
@@ -29,9 +38,9 @@ public class BookSearchView extends JFrame implements PersonObserver {
     JTextField searchField;
     List<BookInfo> currentBookInfoList;
 
-    Person person;
+    User person;
 
-    public BookSearchView(String fileName) {
+    private BookSearchView() {
         setTitle("SearchPage");
         setLayout(new BorderLayout());
         setVisible(true);
@@ -40,10 +49,10 @@ public class BookSearchView extends JFrame implements PersonObserver {
         frameSize = getSize();
         setLocation((windowSize.width - frameSize.width) / 2, (windowSize.height - frameSize.height) / 2);
 
-        addSearchPanel((User)person);
+        addSearchPanel();
     }
 
-    void displayBookInfo(List<BookInfo> bookInfoList, User user) {
+    void displayBookInfo(List<BookInfo> bookInfoList) {
         searchPanel.removeAll();
 
         String[] columnNames = {"Title", "Type", "Author", "Publisher", "Publish Date", "ISBN", "Notes", "Class No", "Language", "Call No", "Location"};
@@ -71,7 +80,7 @@ public class BookSearchView extends JFrame implements PersonObserver {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("User: " + person.getName());
-                if (user.getCurrentRentalBookNum() < user.getMaximumRentalBookNum()) {
+                if (person.getCurrentRentalBookNum() < person.getMaximumRentalBookNum()) {
                     BookInfo bookInfo = currentBookInfoList.get(0); // 첫 번째 책을 대여한다고 가정
                     Book rentedBook = new Book(
                             bookInfo.getTitle(),
@@ -87,13 +96,13 @@ public class BookSearchView extends JFrame implements PersonObserver {
                             bookInfo.getLocation()
                     );
 
-                    boolean added = user.addRentedBook(rentedBook);
+                    boolean added = person.addRentedBook(rentedBook);
                     if (added) {
-                        System.out.println("대여된 책 수: " + user.getCurrentRentalBookNum() + user.getID()); 
+                        System.out.println("대여된 책 수: " + person.getCurrentRentalBookNum() + person.getID());
                         JOptionPane.showMessageDialog(null, "대여신청이 완료됐습니다.");
                     } else {
                         JOptionPane.showMessageDialog(null, "더 이상 책을 대여할 수 없습니다.");
-                        System.out.println("대여된 책 수: " + user.getCurrentRentalBookNum() +user.getID()); 
+                        System.out.println("대여된 책 수: " + person.getCurrentRentalBookNum() +person.getID());
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "대여가 불가능한 상태입니다.");
@@ -120,7 +129,7 @@ public class BookSearchView extends JFrame implements PersonObserver {
         currentBookInfoList = bookInfoList;
     }
 
-    void addSearchPanel(User user) {
+    void addSearchPanel() {
         searchPanel = new JPanel();
         searchPanel.setLayout(new BorderLayout());
 
@@ -146,7 +155,7 @@ public class BookSearchView extends JFrame implements PersonObserver {
                 if (bookInfoList.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "책 정보가 존재하지 않습니다!");
                 } else {
-                    displayBookInfo(bookInfoList, user);
+                    displayBookInfo(bookInfoList);
                 }
             }
         });
@@ -161,6 +170,6 @@ public class BookSearchView extends JFrame implements PersonObserver {
 
     @Override
     public void updateCurrentPerson(Person currentPerson) {
-        person = currentPerson;
+        this.person = (User) currentPerson;
     }
 }
