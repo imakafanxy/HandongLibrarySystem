@@ -1,11 +1,16 @@
 package utility.ButtonCommand;
 
-import views.AddCdView;
+import models.Borrowable.Cd;
 
 public class AddCdCommand implements ButtonCommand {
+    Cd cd;
+
+    public AddCdCommand(Cd cd) {
+        this.cd = cd;
+    }
+
     @Override
     public void buttonPress() {
-        AddCdView addCdView = new AddCdView();
-        addCdView.setVisible(true);
+        cd.addItem();
     }
 }

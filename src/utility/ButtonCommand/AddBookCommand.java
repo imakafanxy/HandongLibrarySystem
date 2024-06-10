@@ -8,6 +8,7 @@ public class AddBookCommand implements ButtonCommand {
     public AddBookCommand(Book book) {
         this.book = book;
     }
+
     @Override
     public void buttonPress() {
         book.addItem();
