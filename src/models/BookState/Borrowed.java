@@ -14,5 +14,6 @@ public class Borrowed implements BookState {
     @Override
     public void returnBook(Book book) {
         System.out.println("반납 성공!");
+        book.setAvailability(new UnBorrowed());
     }
 }

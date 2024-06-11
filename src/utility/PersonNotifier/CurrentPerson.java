@@ -12,7 +12,7 @@ public class CurrentPerson extends PersonSubject {
         if(currentPerson == null) {
             currentPerson =  new CurrentPerson();
         }
-        
+
         return currentPerson;
     }
 

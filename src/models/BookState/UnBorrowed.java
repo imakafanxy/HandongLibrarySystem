@@ -4,11 +4,12 @@ import models.Borrowable.Book;
 
 import javax.swing.*;
 
-// State Pattern: Concrete Statex
+// State Pattern: Concrete States
 public class UnBorrowed implements BookState{
     @Override
     public void borrow(Book book) {
         System.out.println("대출 성공!");
+        book.setAvailability(new Borrowed());
     }
 
     @Override
